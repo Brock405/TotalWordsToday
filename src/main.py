@@ -1,6 +1,7 @@
 import customtkinter
 import keyboard
 import threading
+from tkinter import* # type: ignore
 
 howManyKeysArePressed = 0
 howManyWordsAreTyped = 0
@@ -27,7 +28,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.geometry("580x420")
-        self.title("Total Words Today")
+        self.title("Total Words Today") 
 
         #  ------ add widgets to app ------
 
@@ -51,4 +52,5 @@ class App(customtkinter.CTk):
 
 app = App()
 app.after(100, app.updateCounter)
+app.after(201, lambda :app.iconphoto(False, PhotoImage(file="C:/Users/bmapl/Documents/Code/python/TotalWordsTodayGit/src/TWT_Logo.png")))
 app.mainloop()
