@@ -3,6 +3,10 @@ import keyboard
 import threading
 from tkinter import* # type: ignore
 
+# script to turn to exe
+# pyinstaller --onefile --windowed src/TWT.py
+
+
 howManyKeysArePressed = 0
 howManyWordsAreTyped = 0
 
@@ -14,10 +18,9 @@ def detectsIfButtonPressedDown():
         keyEvent = keyboard.read_event()
         if keyEvent.event_type == keyboard.KEY_UP:
             howManyKeysArePressed += 1
-            print(howManyKeysArePressed)
             if keyEvent.name == 'space':
                 howManyWordsAreTyped += 1
-
+  
 
 threadToCheckIfButtonPressed = threading.Thread(target=detectsIfButtonPressedDown)
 threadToCheckIfButtonPressed.start()
@@ -44,6 +47,9 @@ class App(customtkinter.CTk):
         # word counter
         self.wordsTypedTodayCounter = customtkinter.CTkLabel(self, font=('Roboto', 30, 'bold'), text= str(howManyWordsAreTyped), fg_color="transparent")
         self.wordsTypedTodayCounter.place(relx=0.8, rely=0.2,  anchor=customtkinter.CENTER)
+
+        self.minimizeAppText = customtkinter.CTkLabel(self, text="Just mimimize this window and let it run in the background all day", fg_color="transparent", bg_color="transparent", font=('Roboto', 16), corner_radius=10)
+        self.minimizeAppText.place(relx=0.5, rely=0.8, anchor=customtkinter.CENTER)
 
         # intro screen
         self.introScreenBackground = customtkinter.CTkFrame(master=self, width=580, height=420)
