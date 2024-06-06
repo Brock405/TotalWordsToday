@@ -1,11 +1,12 @@
 import customtkinter
 import keyboard
 import threading
-from tkinter import* # type: ignore
+from tkinter import * # type: ignore
 
 # script to turn to exe
 # pyinstaller --onefile --windowed src/TWT.py
 
+# todo: Send a notification to the user when they reach typing milestones
 
 howManyKeysArePressed = 0
 howManyWordsAreTyped = 0
@@ -48,7 +49,7 @@ class App(customtkinter.CTk):
         self.wordsTypedTodayCounter = customtkinter.CTkLabel(self, font=('Roboto', 30, 'bold'), text= str(howManyWordsAreTyped), fg_color="transparent")
         self.wordsTypedTodayCounter.place(relx=0.8, rely=0.2,  anchor=customtkinter.CENTER)
 
-        self.minimizeAppText = customtkinter.CTkLabel(self, text="Just mimimize this window and let it run in the background all day", fg_color="transparent", bg_color="transparent", font=('Roboto', 16), corner_radius=10)
+        self.minimizeAppText = customtkinter.CTkLabel(self, text="Just mimimize this window and let it run in the background.\n It will record your stats.", fg_color="transparent", bg_color="transparent", font=('Roboto', 16), corner_radius=10)
         self.minimizeAppText.place(relx=0.5, rely=0.8, anchor=customtkinter.CENTER)
 
         # intro screen
@@ -58,11 +59,11 @@ class App(customtkinter.CTk):
         self.titleScreen = customtkinter.CTkLabel(self.introScreenBackground, text="Welcome to TWT", fg_color="transparent", bg_color="transparent", font=('Roboto', 42, 'bold'), corner_radius=10)
         self.titleScreen.place(relx=0.5, rely=0.1, anchor=customtkinter.CENTER)
 
-        self.appInfoText = customtkinter.CTkLabel(self.introScreenBackground, text="This an app that will record various statistics about\n your keyboard and will send you a notification\n at the end of the day about your productivity.\n \n \n Press the button below to start recording todays stats", fg_color="transparent", bg_color="transparent", font=('Roboto', 16), corner_radius=10)
+        self.appInfoText = customtkinter.CTkLabel(self.introScreenBackground, text="This an app that will record various statistics about\n your keyboard.\n \n \n \n Press the button below to start recording todays stats", fg_color="transparent", bg_color="transparent", font=('Roboto', 16), corner_radius=10)
         self.appInfoText.place(relx=0.5, rely=0.4, anchor=customtkinter.CENTER)
 
         self.dismissInfoScreen = customtkinter.CTkButton(self.introScreenBackground, text="Start", command=self.startButtonEvent)
-        self.dismissInfoScreen.place(relx=0.5, rely=0.8, anchor=customtkinter.CENTER)
+        self.dismissInfoScreen.place(relx=0.5, rely=0.7, anchor=customtkinter.CENTER)
 
     # add methods to app  
     def updateCounter(self):
